@@ -1,4 +1,5 @@
 - Default configuration is without TS
+- Console errors related to user code are unclear (noe easy jump to source)
 - Integration eslint + Vue is a bit buggy in VS Code (// eslint-disable-next-line)
 - Methods have to be function not lambdas
 - Need for a specific VSCode extension

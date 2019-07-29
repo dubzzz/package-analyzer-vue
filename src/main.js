@@ -15,7 +15,7 @@ const router = new VueRouter({
   mode: 'history',
   routes: [
     { path: '/', name: 'search', component: SearchPage },
-    { path: '/details/:packageName', name: 'details', component: DetailsPage }
+    { path: '/details/:packageName', name: 'details', component: DetailsPage, props: true }
   ]
 })
 
