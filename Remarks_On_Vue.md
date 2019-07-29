@@ -1,7 +1,0 @@
-- Default configuration is without TS
-- Console errors related to user code are unclear (noe easy jump to source)
-- Integration eslint + Vue is a bit buggy in VS Code (// eslint-disable-next-line)
-- Methods have to be function not lambdas
-- Need for a specific VSCode extension
-- Need to explicitely declare `components` to be able to use them in the template - `Unknown custom element`
-- Vue devtools does not detect Vue (sometimes when Vue fails with Vue.use(undefined))
