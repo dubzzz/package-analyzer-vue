@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App.vue';
+import { baseUrl } from '../vue.config'
 
 const SearchPage = () => import('./components/SearchPage.vue');
 const DetailsPage = () => import('./components/DetailsPage.vue');
@@ -12,6 +13,7 @@ Vue.use(VueRouter)
 Vue.config.productionTip = false
 
 const router = new VueRouter({
+  base: baseUrl,
   mode: 'history',
   routes: [
     { path: '/', name: 'search', component: SearchPage },
