@@ -1,3 +1,3 @@
 module.exports = {
-    baseUrl: './'
+    publicPath: 'https://dubzzz.github.io/package-analyzer-vue/'
 }
