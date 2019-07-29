@@ -1,0 +1,4 @@
+- Default configuration is without TS
+- Need for a specific VSCode extension
+- Need to explicitely declare `components` to be able to use them in the template
+- Vue devtools does not detect Vue (sometimes when Vue fails with Vue.use(undefined))
