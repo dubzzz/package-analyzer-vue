@@ -16,9 +16,13 @@ Vue.config.devtools = true
 const extractBase = (url) => {
   try {
     const u = new URL(url);
+    // eslint-disable-next-line no-console
+    console.log(`(success) Extracted base url: `, u.pathname);
     return u.pathname;
   }
   catch (err) {
+    // eslint-disable-next-line no-console
+    console.log(`(failure) Extracted base url: `, url);
     return url;
   }
 }
