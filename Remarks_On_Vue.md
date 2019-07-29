@@ -1,4 +1,6 @@
 - Default configuration is without TS
+- Integration eslint + Vue is a bit buggy in VS Code (// eslint-disable-next-line)
+- Methods have to be function not lambdas
 - Need for a specific VSCode extension
 - Need to explicitely declare `components` to be able to use them in the template
 - Vue devtools does not detect Vue (sometimes when Vue fails with Vue.use(undefined))
