@@ -13,8 +13,18 @@ Vue.use(VueRouter)
 Vue.config.productionTip = false
 Vue.config.devtools = true
 
+const extractBase = (url) => {
+  try {
+    const u = new URL(url);
+    return u.pathname;
+  }
+  catch (err) {
+    return url;
+  }
+}
+
 const router = new VueRouter({
-  base: baseUrl,
+  base: extractBase(baseUrl),
   mode: 'history',
   routes: [
     { path: '/', name: 'search', component: SearchPage },
