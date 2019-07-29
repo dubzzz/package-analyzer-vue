@@ -1,6 +1,6 @@
 <template>
   <div>
-    <md-card>
+    <md-card class="package-details">
       <md-card-header>
         <div class="md-title">{{packageName}}</div>
         <div class="md-subhead">{{packageVersion}}</div>
@@ -56,6 +56,9 @@ export default {
 </script>
 
 <style scoped>
+.package-details {
+  cursor: pointer;
+}
 .package-description {
   font-size: 0.8em;
   padding-bottom: 1em;
