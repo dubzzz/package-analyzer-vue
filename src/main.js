@@ -11,6 +11,7 @@ import "vue-material/dist/theme/default.css";
 
 Vue.use(VueRouter)
 Vue.config.productionTip = false
+Vue.config.devtools = true
 
 const router = new VueRouter({
   base: baseUrl,
