@@ -14,6 +14,7 @@
       <br />
       Over {{numNodes+numRemaining}} detected
     </p>
+    <p v-if="numRemaining === 0">{{numNodes}} packages</p>
     <svg width="400" height="300" />
   </div>
 </template>
@@ -89,6 +90,8 @@ export default {
         const visited = { [newPackageName]: true };
         nodes.push({ id: newPackageName, group: 1 });
         const remaining = [newPackageName];
+        this.packages[newPackageName] =
+          this.packages[newPackageName] || deps(newPackageName);
 
         while (remaining.length !== 0) {
           this.numNodes = nodes.length;
@@ -96,16 +99,16 @@ export default {
 
           const [currentPackage] = remaining.splice(-1);
           const packageDeps =
-            this.packages[currentPackage] ||
-            ((await deps(currentPackage)).collected.metadata.dependencies ||
-              {});
-          this.packages[currentPackage] = packageDeps;
+            (await this.packages[currentPackage]).collected.metadata
+              .dependencies || {};
 
           for (const requirement in packageDeps) {
             if (visited[requirement] !== true) {
               visited[requirement] = true;
               remaining.push(requirement);
               nodes.push({ id: requirement, group: 1 });
+              this.packages[requirement] =
+                this.packages[requirement] || deps(requirement);
             }
 
             links.push({
