@@ -22,9 +22,8 @@
 <script>
 import * as d3 from "d3";
 import Vue from "vue";
+import { mapState } from "vuex";
 import { MdButton, MdIcon } from "vue-material/dist/components";
-
-import { deps } from "../api/Npm";
 
 Vue.use(MdButton);
 Vue.use(MdIcon);
@@ -36,10 +35,17 @@ export default {
   },
   data: () => ({
     cleanD3: () => {},
-    packages: {},
     numNodes: 0,
     numRemaining: 0
   }),
+  computed: {
+    ...mapState({
+      packages: state => state.details.packages
+    }),
+    compoundedProp() {
+      return [this.packages, this.packageName];
+    }
+  },
   methods: {
     backHome: function() {
       this.$router.push({ name: "search", params: {} });
@@ -82,33 +88,31 @@ export default {
     }
   },
   watch: {
-    packageName: {
+    compoundedProp: {
       immediate: true,
-      handler: async function(newPackageName) {
+      handler: function() {
         const nodes = [];
         const links = [];
-        const visited = { [newPackageName]: true };
-        nodes.push({ id: newPackageName, group: 1 });
-        const remaining = [newPackageName];
-        this.packages[newPackageName] =
-          this.packages[newPackageName] || deps(newPackageName);
+        const visited = { [this.packageName]: true };
+        nodes.push({ id: this.packageName, group: 1 });
+        const remaining = [this.packageName];
+        this.$store.dispatch("details/fetchPackage", this.packageName);
 
         while (remaining.length !== 0) {
           this.numNodes = nodes.length;
           this.numRemaining = remaining.length;
-
           const [currentPackage] = remaining.splice(-1);
+          if (!this.packages[currentPackage]) return;
+
           const packageDeps =
-            (await this.packages[currentPackage]).collected.metadata
-              .dependencies || {};
+            this.packages[currentPackage].collected.metadata.dependencies || {};
 
           for (const requirement in packageDeps) {
             if (visited[requirement] !== true) {
               visited[requirement] = true;
               remaining.push(requirement);
               nodes.push({ id: requirement, group: 1 });
-              this.packages[requirement] =
-                this.packages[requirement] || deps(requirement);
+              this.$store.dispatch("details/fetchPackage", requirement);
             }
 
             links.push({
@@ -118,7 +122,7 @@ export default {
             });
           }
 
-          if (this.packageName !== newPackageName) return;
+          if (this.packageName !== this.packageName) return;
         }
 
         this.numNodes = nodes.length;
