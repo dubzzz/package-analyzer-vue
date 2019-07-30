@@ -8,3 +8,6 @@
 - Ultra laggy computer
 - Vue devtools does not detect Vue (sometimes when Vue fails with Vue.use(undefined))
 - Various traps encountered with state update and VueX: https://vuejs.org/v2/guide/list.html#Caveats
+
+Misc:
+- Life cycle: https://vuejs.org/v2/guide/instance.html#Lifecycle-Diagram
