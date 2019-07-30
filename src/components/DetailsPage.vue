@@ -12,7 +12,7 @@
     <p v-if="numRemaining > 0">
       Currently loading {{numRemaining}} package(s)...
       <br />
-      Over {{numNodes+numRemaining}} detected
+      Over {{numNodes}} detected
     </p>
     <p v-if="numRemaining === 0">{{numNodes}} packages</p>
     <svg width="400" height="300" />
