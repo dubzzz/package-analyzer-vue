@@ -5,6 +5,7 @@
 - Methods have to be function not lambdas
 - Need for a specific VSCode extension
 - Need to explicitely declare `components` to be able to use them in the template - `Unknown custom element`
+- No higher order component
 - Ultra laggy computer
 - Vue devtools does not detect Vue (sometimes when Vue fails with Vue.use(undefined))
 - Various traps encountered with state update and VueX: https://vuejs.org/v2/guide/list.html#Caveats
